@@ -1,0 +1,16 @@
+.posts
+  .post
+    .post__upper-info
+      %p.post__upper-info__talker
+        = post.user.name
+      %p.post__upper-info__date
+        = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+    %p.post__text
+      - if post.reason.present?
+        %p.post__text__youtube_url
+          %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{post.youtube_url}", :width => "560"}
+        %p.post__text__reason
+          選出理由：
+          %br
+          = post.reason
+      -# = video_tag post.video.url, class: 'lower-post__video' if post.video.present?

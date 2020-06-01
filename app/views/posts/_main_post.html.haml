@@ -1,0 +1,29 @@
+.chat-main
+
+  .main-header
+    .main-header__left-box
+      %h.main-header__left-box__current-group
+        = @genre.name
+      %h.main-header__left-box__member-list
+        Member：
+        - @genre.users.each do |user|
+          = "#{user.name} "
+    .main-header__edit-btn
+      = link_to edit_genre_path(@genre), class:"btn" do
+        Edit
+
+  .form
+    = form_for [@genre, @post] do |f|
+      .input-box
+        紹介したいYoutubeのURLと、選出理由を書いてね！
+        %br
+        (YoutubeのURLは、末尾が"="以下11桁のURLをご利用ください。)
+        = f.text_field :youtube_url, class:"input-box__url", placeholder:"type a Youtube url"
+        = f.text_field :reason, class: 'input-box__reason', placeholder: 'type a reason'
+        -# = f.label :video, class: 'input-box__image' do
+        -#   = icon('far', 'file-video')
+        -#   = f.file_field :video, class: 'input-box__image__file'
+        = f.submit 'Send', class: 'submit-btn'
+        
+  .posts
+    = render @posts

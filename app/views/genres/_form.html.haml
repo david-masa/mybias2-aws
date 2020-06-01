@@ -1,0 +1,25 @@
+= form_for genre do |f|
+  - if genre.errors.any?
+    .mv-genre-form__errors
+      %h2= "#{genre.errors.full_messages.count}件のエラーが発生しました。"
+      %ul
+        - genre.errors.full_messages.each do |message|
+          %li= message
+  .mv-genre-form__field
+    .mv-genre-form__field--left
+      = f.label :name, class: 'mv-genre-form__label'
+    .mv-genre-form__field--right
+      = f.text_field :name, class: 'mv__genre_name mv-genre-form__input', placeholder: 'ジャンルを入力してください'
+  .mv-genre-form__field.clearfix
+    / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+  .mv-genre-form__field.clearfix
+    .mv-genre-form__field--left
+      %label.mv-genre-form__label{:for => "mv_genre_ジャンルメンバー"} ジャンルメンバー
+    .mv-genre-form__field--right
+      / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
+      = f.collection_check_boxes :user_ids, User.all, :id, :name
+      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+  .mv-genre-form__field.clearfix
+    .mv-genre-form__field--left
+    .mv-genre-form__field--right
+      = f.submit class: 'mv-genre-form__action-btn'
