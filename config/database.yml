@@ -50,6 +50,6 @@ test:
 production:
   <<: *default
   database: mybias2_production
-  username: ec2-user
+  username: mybias
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
