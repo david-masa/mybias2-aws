@@ -51,5 +51,5 @@ production:
   <<: *default
   database: mybias2_production
   username: root
-  password: xxxx
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
